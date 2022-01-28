@@ -80,13 +80,18 @@ public class GraphicsPanel extends JPanel implements KeyListener{
 		item.draw(g2, this);
 		sprite.draw(g2, this);
 
-		for(int i = 0; i < boxes.size(); i++)
-			boxes.get(i).draw(g2, this);
-
+		g2.setColor(Color.RED);
+		
+		for(Item b: boxes) {
+			b.draw(g2, this);
+			g2.draw(b.getBounds());
+		}
 
 		g2.setColor(Color.RED);
 		Rectangle r = sprite.getBounds();
 		g2.draw(r);
+		
+		
 	}
 
 	// method:clock
@@ -100,8 +105,14 @@ public class GraphicsPanel extends JPanel implements KeyListener{
 		background1.move(sprite.getX(), sprite.getXDirection());
 		background2.move(sprite.getX(), sprite.getXDirection());
 
-		for(int i = 0; i < boxes.size(); i++)
-			boxes.get(i).move(this);
+		for(Item b : boxes)
+			b.move(this);
+		
+		// you can't remove using an enhanced for loop!
+		// you need to count down!
+		for(int i = boxes.size() - 1; i >= 0; i--)
+			if(boxes.get(i).getX() < 10)
+				System.out.println(boxes.remove(i).getX());
 		
 		boxCounter++;
 		if(boxCounter % 100 == 0)
@@ -115,10 +126,7 @@ public class GraphicsPanel extends JPanel implements KeyListener{
 			sprite.stop_Vertical();
 		}
 
-		for(int i = boxes.size() - 1; i >=0; i--)
-			if(boxes.get(i).getX() <= 50)
-				boxes.remove(i);
-		
+
 		this.repaint();
 	}
 
