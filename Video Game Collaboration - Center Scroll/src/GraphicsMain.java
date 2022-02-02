@@ -14,17 +14,6 @@ public class GraphicsMain extends JFrame{
 
 	public static void main(String[] args) {
 
-		//		new Thread(new Runnable() {
-		//    		@Override
-		//    		public void run() {
-		//    			try {
-		//    				Player player = new Player(getClass().getResource("sounds/music.mp3").openStream());
-		//                			player.play();
-		//    			} catch (Exception e) {
-		//    				e.printStackTrace();
-		//    			}
-		//    		}
-		// 	   		}).start();
 
 		thePlayer = new MyAudioPlayer(".//sounds//music.mp3", true);
 		thePlayer.start();
